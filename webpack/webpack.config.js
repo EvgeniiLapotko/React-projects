@@ -45,6 +45,10 @@ const plugins = () => {
                     from: path.resolve(__dirname, "src/favicon.ico"),
                     to: path.resolve(__dirname, "dist"),
                 },
+                {
+                    from: path.resolve(__dirname, "src/assets/"),
+                    to: path.resolve(__dirname, "dist/assets"),
+                },
             ],
         }),
         new MiniCssExtractPlugin(),
@@ -114,9 +118,16 @@ module.exports = {
                 ],
             },
             {
-                test: /\.(png|jpg|svg|gif)$/, // регулярное выражение для разных типов файлов
-                use: ["file-loader"],
+                test: /\.(png|jpg|jpeg|gif|svg)$/i,
+                loader: "file-loader",
+                options: {
+                    name: "[path][name].[ext]",
+                },
             },
+            // {
+            //     test: /\.(png|jpg|svg|gif)$/, // регулярное выражение для разных типов файлов
+            //     use: ["file-loader"],
+            // },
             {
                 test: /\.(ttf|woff|woff2|eot)$/,
                 use: "file-loader",
