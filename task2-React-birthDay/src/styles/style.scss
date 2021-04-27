@@ -1,0 +1,58 @@
+@import "~normalize.css";
+@import "global";
+
+body {
+    background-color: #e86da8;
+}
+
+.add {
+    background-color: #fff;
+    max-width: 500px;
+
+    padding: 20px;
+    margin: 0 auto;
+    margin-top: 40px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+.title {
+    text-align: center;
+}
+
+.add-inner {
+    display: flex;
+    flex-direction: column;
+}
+
+.add-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    &-name {
+        font-weight: 700;
+    }
+    &-info {
+        margin-bottom: 15px;
+    }
+}
+
+.add-item-img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 25px;
+    img {
+        width: 100%;
+    }
+}
+
+.btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #e86da8;
+    color: #fff;
+    font-size: 26px;
+    text-align: center;
+    margin-bottom: 15px;
+}
