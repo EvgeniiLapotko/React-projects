@@ -1,0 +1,93 @@
+@import "~normalize.css";
+@import "global";
+
+.title {
+    margin-top: 50px;
+    text-align: center;
+    text-transform: uppercase;
+    color: #234;
+    position: relative;
+    padding-bottom: 25px;
+    margin-bottom: 80px;
+}
+
+.title::before {
+    content: "";
+    background-color: skyblue;
+    width: 100px;
+    height: 8px;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.loading {
+    font-size: 76px;
+    line-height: 76px;
+    text-align: center;
+    margin-top: 50px;
+    color: #78f;
+}
+
+.tours__item {
+    max-width: 600px;
+    background-color: #fff;
+    margin: 0 auto;
+    margin-bottom: 40px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+    padding-bottom: 20px;
+    img {
+        width: 100%;
+    }
+    &-title {
+        font-size: 24px;
+        font-weight: 700;
+        color: #456;
+    }
+    &-price {
+        font-size: 24px;
+        color: blue;
+        word-wrap: none;
+    }
+    &-info {
+        padding: 20px;
+    }
+}
+
+.tours__item-name {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn-delete {
+    all: unset;
+    display: block;
+    width: 250px;
+    text-align: center;
+    margin: 0 auto;
+    border: 2px solid crimson;
+    border-radius: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.btn-read {
+    all: unset;
+    color: skyblue;
+    padding: 5px;
+}
+
+.update {
+    all: unset;
+    width: 150px;
+    display: block;
+    background-color: skyblue;
+    color: #fff;
+    font-size: 24px;
+    text-align: center;
+    margin: 0 auto;
+    border-radius: 5px;
+    padding: 15px;
+}
