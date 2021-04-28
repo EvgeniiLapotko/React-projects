@@ -1,0 +1,111 @@
+@import "~normalize.css";
+@import "global";
+
+.title {
+    margin-top: 50px;
+    text-align: center;
+    text-transform: uppercase;
+    color: #234;
+    position: relative;
+    padding-bottom: 25px;
+    margin-bottom: 80px;
+    font-size: 36px;
+    line-height: 36px;
+    font-weight: 600;
+}
+
+.title::before {
+    content: "";
+    background-color: skyblue;
+    width: 100px;
+    height: 8px;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.review__item {
+    max-width: 328px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+    &-img {
+        position: relative;
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        margin: 0 auto;
+        margin-bottom: 15px;
+        img {
+            width: 100%;
+            height: auto;
+            border-radius: 50%;
+        }
+    }
+    &-name {
+        text-align: center;
+        font-size: 22px;
+        font-weight: 700;
+    }
+    &-job {
+        text-align: center;
+        font-size: 22px;
+        font-weight: 700;
+        margin-bottom: 15px;
+        color: cornflowerblue;
+    }
+    &-text {
+        text-align: center;
+        font-size: 18px;
+        margin-bottom: 15px;
+    }
+}
+
+.btn-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.btn-random {
+    width: 100%;
+    margin-top: 15px;
+    color: #fff;
+    background-color: skyblue;
+    border: none;
+    outline: none;
+    padding: 8px;
+    border-radius: 10px;
+    transition: all 0.8s;
+    &:hover {
+        background-color: rgb(94, 94, 216);
+    }
+}
+
+.btn-prew,
+.btn-next {
+    all: unset;
+    padding: 5px;
+    color: rgb(94, 94, 216);
+    margin: 0 15px;
+    &:hover {
+        color: blue;
+    }
+}
+
+.quote {
+    position: absolute;
+    top: 5px;
+    left: 0px;
+    z-index: 5;
+    font-size: 22px;
+    background-color: skyblue;
+    padding: 8px;
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+}
