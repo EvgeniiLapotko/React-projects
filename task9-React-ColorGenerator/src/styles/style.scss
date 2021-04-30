@@ -1,0 +1,65 @@
+@import "~normalize.css";
+@import "global";
+
+.container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px;
+}
+.title {
+    text-transform: uppercase;
+    margin-right: 25px;
+    margin-left: 35px;
+}
+.error {
+    border: 2px solid red;
+}
+
+.inpit-value {
+    padding: 2px 10px;
+    margin-right: 10px;
+}
+
+.btn {
+    all: unset;
+    background-color: skyblue;
+    color: #fff;
+    padding: 2px 10px;
+    border-radius: 3px;
+    transition: all 0.3s;
+    &:hover {
+        background-color: rgb(43, 179, 233);
+    }
+    &:active {
+        transform: scale(0.9);
+    }
+}
+
+.colors {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.color__item {
+    width: 20%;
+    height: 140px;
+    padding: 10px 15px;
+    &.color-light {
+        color: #fff;
+    }
+    &-value {
+        margin: 0;
+    }
+    &-hex {
+        margin: 0;
+    }
+}
+
+.alert {
+    background-color: rgba(99, 238, 99, 0.3);
+    width: 50%px;
+    padding: 5;
+    text-align: center;
+    border-radius: 15px;
+    transition: all 0.5s;
+}
