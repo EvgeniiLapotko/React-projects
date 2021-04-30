@@ -1,17 +1,19 @@
 @import "~normalize.css";
 @import "global";
 
-body{
+body {
     background-color: #ddd;
 }
 
-.slider__item{
+.slider__item {
     position: absolute;
     top: 20px;
     right: 0;
     width: 100%;
     height: 100%;
-    &-img{
+    opacity: 0;
+    transition: all 0.5s;
+    &-img {
         display: block;
         width: 150px;
         margin: 0 auto;
@@ -20,7 +22,7 @@ body{
         box-shadow: 0 3px 10px grey;
         margin-bottom: 15px;
     }
-    &-name{
+    &-name {
         text-align: center;
         font-size: 24px;
         color: orangered;
@@ -28,7 +30,7 @@ body{
         text-transform: uppercase;
         margin-bottom: 20px;
     }
-    &-title{
+    &-title {
         text-align: center;
         font-size: 22px;
         text-transform: uppercase;
@@ -36,29 +38,28 @@ body{
         text-transform: uppercase;
         margin-bottom: 35px;
     }
-    &-quote{
+    &-quote {
         text-align: center;
         font-size: 18px;
-        
+
         max-width: 400px;
         margin: 0 auto;
         margin-bottom: 25px;
     }
-    &-icon{
+    &-icon {
         text-align: center;
         display: block;
         margin: 0 auto;
         color: orangered;
         font-size: 36px;
     }
-
 }
 
-.title{
+.title {
     text-align: center;
     font-size: 36px;
     color: #678;
-    span{
+    span {
         font-size: 36px;
         display: inline-block;
         padding-right: 5px;
@@ -66,43 +67,63 @@ body{
     }
 }
 
-.slider__item.activeSlide{
+.slider__item.activeSlide {
     opacity: 1;
     transform: translateX(0);
 }
 
-.slider__item.lastSlide{
+.slider__item.lastSlide {
     opacity: 0;
     transform: translateX(-100%);
 }
 
-.slider__item.nextSlide{
+.slider__item.nextSlide {
     opacity: 0;
     transform: translateX(100%);
 }
 
-.slider__inner{
+.slider__inner {
     max-width: 550px;
     height: 460px;
     width: 100%;
     margin: 0 auto;
     background-color: #fff;
-    box-shadow: 0 2px 15px rgba(0,0,0, 0.4);
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.4);
     position: relative;
     display: flex;
     overflow: hidden;
 }
 
-.prev{
+.prev {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
     left: 15px;
+    background-color: grey;
+    border: 2px solid grey;
+    color: #fff;
+    transition: all 0.5s;
+    display: flex;
+    padding: 2px 4px;
+    &:hover {
+        background-color: orangered;
+        border: 2px solid rgb(255, 117, 67);
+    }
 }
 
-.next{
+.next {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
     right: 15px;
+    background-color: grey;
+    color: #fff;
+    border: 2px solid grey;
+    transition: all 0.5s;
+    display: flex;
+    padding: 2px 4px;
+    &:hover {
+        background-color: orangered;
+        border: 2px solid rgb(255, 117, 67);
+    }
 }
