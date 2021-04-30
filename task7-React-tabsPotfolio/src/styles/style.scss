@@ -1,0 +1,128 @@
+@import "~normalize.css";
+@import "global";
+
+
+body{
+    background-color: #ffa;
+}
+
+.loading{
+    font-size: 120px;
+    text-align: center;
+    color: rgb(27, 172, 111)
+}
+
+.section{
+    background-color: #fff;
+    max-width: 750px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 40px;
+    
+}
+
+.title{
+    text-align: center;
+    position: relative;
+    padding-bottom: 20px;
+    &::after{
+        content: '';
+        position: absolute;
+        background-color: rgb(27, 172, 111);
+        width: 120px;
+        height: 6px;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%)
+        
+    }
+}
+
+
+.btn__container{
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.btn{
+    all: unset;
+    padding: 5px 20px;
+    position: relative;
+    transition: all 0.5s;
+    &::after{
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background-color:  transparent;
+    }
+    &:hover{
+        color: rgb(27, 172, 111);
+    }
+}
+
+.btn.btn-active{
+    &::after{
+        background-color:  rgb(27, 172, 111);
+    }
+    
+    color: rgb(27, 172, 111);
+}
+
+.job__item{
+    &-title{
+        font-size: 28px;
+        margin: 0;
+        margin-bottom: 20px;
+        color: #345;
+
+    }
+    &-company{
+        background-color: #ddd;
+        display: inline-block;
+        margin: 0;
+        margin-bottom: 15px;
+        padding: 5px 20px;
+        border-radius: 8px;
+    }
+    &-data{
+        font-weight: 300;
+        font-size: 14px;
+        margin-bottom: 25px;
+    }
+    &-info{
+        position: relative;
+        p{
+            padding-left: 40px;
+        }
+    }
+    &-icon{
+        position: absolute;
+        top: 50%;
+        left: 0;
+        color:rgb(27, 172, 111);
+        transform: translateY(-50%)
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
