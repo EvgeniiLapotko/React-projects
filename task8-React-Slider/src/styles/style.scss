@@ -1,0 +1,108 @@
+@import "~normalize.css";
+@import "global";
+
+body{
+    background-color: #ddd;
+}
+
+.slider__item{
+    position: absolute;
+    top: 20px;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    &-img{
+        display: block;
+        width: 150px;
+        margin: 0 auto;
+        border-radius: 50%;
+        border: 2px solid grey;
+        box-shadow: 0 3px 10px grey;
+        margin-bottom: 15px;
+    }
+    &-name{
+        text-align: center;
+        font-size: 24px;
+        color: orangered;
+        font-weight: 700;
+        text-transform: uppercase;
+        margin-bottom: 20px;
+    }
+    &-title{
+        text-align: center;
+        font-size: 22px;
+        text-transform: uppercase;
+        color: darkgray;
+        text-transform: uppercase;
+        margin-bottom: 35px;
+    }
+    &-quote{
+        text-align: center;
+        font-size: 18px;
+        
+        max-width: 400px;
+        margin: 0 auto;
+        margin-bottom: 25px;
+    }
+    &-icon{
+        text-align: center;
+        display: block;
+        margin: 0 auto;
+        color: orangered;
+        font-size: 36px;
+    }
+
+}
+
+.title{
+    text-align: center;
+    font-size: 36px;
+    color: #678;
+    span{
+        font-size: 36px;
+        display: inline-block;
+        padding-right: 5px;
+        color: orangered;
+    }
+}
+
+.slider__item.activeSlide{
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.slider__item.lastSlide{
+    opacity: 0;
+    transform: translateX(-100%);
+}
+
+.slider__item.nextSlide{
+    opacity: 0;
+    transform: translateX(100%);
+}
+
+.slider__inner{
+    max-width: 550px;
+    height: 460px;
+    width: 100%;
+    margin: 0 auto;
+    background-color: #fff;
+    box-shadow: 0 2px 15px rgba(0,0,0, 0.4);
+    position: relative;
+    display: flex;
+    overflow: hidden;
+}
+
+.prev{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 15px;
+}
+
+.next{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 15px;
+}
