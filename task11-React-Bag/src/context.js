@@ -2,7 +2,7 @@ import React, { useEffect, useContext, useReducer } from "react";
 import cartItem from "./data";
 import reducer from "./reducer";
 
-const URL = "https://course-api.com/react-prop-types-example";
+const URL = "https://course-api.com/react-useReducer-cart-project";
 
 const AppContext = React.createContext();
 
@@ -33,7 +33,7 @@ const AppProvaider = ({ children }) => {
         dispatch({ type: "LOADING" });
         const responce = await fetch(URL);
         const data = await responce.json();
-        console.log(data);
+        dispatch({ type: "CART_LOADING", payload: data });
         dispatch({ type: "UNLOADING" });
     };
 
