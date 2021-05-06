@@ -1,0 +1,66 @@
+import React, { useEffect, useContext, useReducer } from "react";
+import cartItem from "./data";
+import reducer from "./reducer";
+
+const URL = "https://course-api.com/react-prop-types-example";
+
+const AppContext = React.createContext();
+
+const initialState = {
+    loading: true,
+    cart: cartItem,
+    total: 0,
+    amount: 0,
+};
+
+const AppProvaider = ({ children }) => {
+    const [state, dispatch] = useReducer(reducer, initialState);
+
+    const clearCart = () => {
+        dispatch({ type: "CLEAR_CART" });
+    };
+    const remove = (id) => {
+        dispatch({ type: "REMOVE_ITEM", payload: id });
+    };
+    const increase = (id) => {
+        dispatch({ type: "INCREASE", payload: id });
+    };
+    const decrease = (id) => {
+        dispatch({ type: "DECREASE", payload: id });
+    };
+
+    const fetchData = async () => {
+        dispatch({ type: "LOADING" });
+        const responce = await fetch(URL);
+        const data = await responce.json();
+        console.log(data);
+        dispatch({ type: "UNLOADING" });
+    };
+
+    useEffect(() => {
+        fetchData();
+    }, []);
+
+    useEffect(() => {
+        dispatch({ type: "GET_TOTAL" });
+    }, [state.cart]);
+    return (
+        <AppContext.Provider
+            value={{
+                ...state,
+                clearCart,
+                remove,
+                increase,
+                decrease,
+            }}
+        >
+            {children}
+        </AppContext.Provider>
+    );
+};
+
+export const useGlobalContext = () => {
+    return useContext(AppContext);
+};
+
+export { AppContext, AppProvaider };
