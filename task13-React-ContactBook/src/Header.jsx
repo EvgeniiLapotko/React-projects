@@ -1,7 +1,8 @@
 import React from "react";
 import user from "./assets/icon-user.png";
 
-const Header = ({ login }) => {
+const Header = ({ login, exit, getName, name }) => {
+   
     return (
         <div className="header__inner">
             <div className="header__item">
@@ -10,15 +11,14 @@ const Header = ({ login }) => {
                     <li>Contact</li>
                 </ul>
             </div>
-            <div className="header__item">
-                {login ? (
+            <div className="header__item" >
+                {login ? 
                     <div className="header__item-info">
                         <img src={user} alt="user" />
-                        <button className="btn">Log Out</button>
-                    </div>
-                ) : (
-                    <button className="btn">Log In</button>
-                )}
+                        <div>Welcom, {name}  </div>
+                        <button className="btn" onClick={exit}>Log Out</button>
+                    </div> : <button className="btn" onClick={getName}>Log In</button>
+                }
             </div>
         </div>
     );
