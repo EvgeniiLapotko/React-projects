@@ -1,11 +1,9 @@
 import { createStore } from "redux";
+import rootReducer from "./reducers";
 
-function counterReducer(state = { value: 0 }, action) {
-    return state;
-}
-
-let store = createStore(counterReducer);
-
-console.log(store);
+const store = createStore(
+    rootReducer,
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
 
 export default store;

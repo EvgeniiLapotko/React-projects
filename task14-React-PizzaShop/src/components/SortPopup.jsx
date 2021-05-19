@@ -5,7 +5,7 @@ const SortPopup = ({ sortArr }) => {
     const [active, setActive] = useState(0);
     const sortRef = useRef("");
     const textSpan = useRef();
-    const activeLabel = sortArr[active];
+    const activeLabel = sortArr[active].name;
 
     const tooglePopup = () => {
         setPopup(!popup);
@@ -58,7 +58,7 @@ const SortPopup = ({ sortArr }) => {
                                             active === index ? "active" : ""
                                         }
                                     >
-                                        {item}
+                                        {item.name}
                                     </li>
                                 );
                             })}
