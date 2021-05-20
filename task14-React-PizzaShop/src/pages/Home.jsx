@@ -3,44 +3,63 @@ import { Categories, SortPopup, PizzasBlock } from "../components";
 import { useSelector, useDispatch } from "react-redux";
 
 import { setCategory } from "../redux/actions/filters";
+import { fetchPizzas } from "../redux/actions/pizzas";
+// import data from "../db"; база в src
 
-const category = ["мясные", "вегатерианские", "Гриль", "Острые"];
+const categoryPizzas = ["мясные", "вегатерианские", "Гриль", "Острые"];
 const sort = [
     { name: "популярности", type: "popular" },
     { name: "цене", type: "price" },
     { name: "алфавиту", type: "alphabet" },
 ];
 
-const Home = ({ pizzas }) => {
+
+
+const Home = () => {
     const dispatch = useDispatch();
     const item = useSelector(({ pizzas }) => pizzas.items);
+    const isLoaded = useSelector(({ pizzas }) => pizzas.isLoaded);
+    const {category, sortBy} = useSelector(({ filters }) => filters);
 
     const onSelectCategory = (index) => {
         dispatch(setCategory(index));
     };
 
+   
+    React.useEffect(() => {
+        dispatch(fetchPizzas())  //для сервера
+        // 
+        // setTimeout(() => {                      для работы без сервера
+        //     dispatch(setPizzas(data.pizzas));
+        // }, 3000);
+
+    }, [category, sortBy]);
+
+
     return (
         <div className="container">
             <div className="content__top">
                 <Categories
-                    category={category}
+                activeCategory={category}
+                    category={categoryPizzas}
                     onClickItem={onSelectCategory}
                 />
                 <SortPopup sortArr={sort} />
             </div>
             <h2 className="content__title">Все пиццы</h2>
             <div className="content__items">
-                {item.length === 0 ? (
+                {isLoaded ? (
+                    item.map((item, index) => {
+                        return <PizzasBlock key={item.id} {...item} />;
+                    })
+                    
+                ) : (
                     <div className="wrap-lds">
                         <div className="lds-ripple">
                             <div></div>
                             <div></div>
                         </div>
                     </div>
-                ) : (
-                    item.map((item, index) => {
-                        return <PizzasBlock key={item.id} {...item} />;
-                    })
                 )}
             </div>
         </div>
