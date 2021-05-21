@@ -8,43 +8,38 @@ import { fetchPizzas } from "../redux/actions/pizzas";
 
 const categoryPizzas = ["мясные", "вегатерианские", "Гриль", "Острые"];
 const sort = [
-    { name: "популярности", type: "popular" },
+    { name: "популярности", type: "rating" },
     { name: "цене", type: "price" },
-    { name: "алфавиту", type: "alphabet" },
+    { name: "алфавиту", type: "name" },
 ];
-
-
 
 const Home = () => {
     const dispatch = useDispatch();
     const item = useSelector(({ pizzas }) => pizzas.items);
     const isLoaded = useSelector(({ pizzas }) => pizzas.isLoaded);
-    const {category, sortBy} = useSelector(({ filters }) => filters);
+    const { category, sortBy } = useSelector(({ filters }) => filters);
 
     const onSelectCategory = (index) => {
         dispatch(setCategory(index));
     };
 
-   
     React.useEffect(() => {
-        dispatch(fetchPizzas())  //для сервера
-        // 
+        dispatch(fetchPizzas(category, sortBy)); //для сервера
+        //
         // setTimeout(() => {                      для работы без сервера
         //     dispatch(setPizzas(data.pizzas));
         // }, 3000);
-
     }, [category, sortBy]);
-
 
     return (
         <div className="container">
             <div className="content__top">
                 <Categories
-                activeCategory={category}
+                    activeCategory={category}
                     category={categoryPizzas}
                     onClickItem={onSelectCategory}
                 />
-                <SortPopup sortArr={sort} />
+                <SortPopup sortArr={sort} activeSort={sortBy} />
             </div>
             <h2 className="content__title">Все пиццы</h2>
             <div className="content__items">
@@ -52,7 +47,6 @@ const Home = () => {
                     item.map((item, index) => {
                         return <PizzasBlock key={item.id} {...item} />;
                     })
-                    
                 ) : (
                     <div className="wrap-lds">
                         <div className="lds-ripple">

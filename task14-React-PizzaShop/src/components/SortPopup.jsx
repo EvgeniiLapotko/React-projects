@@ -1,11 +1,14 @@
 import React, { useState, useEffect, useRef } from "react";
+import { sortBy } from "../redux/actions/filters";
+import { useDispatch, useSelector } from "react-redux";
 
-const SortPopup = ({ sortArr }) => {
+const SortPopup = ({ sortArr, activeSort }) => {
     const [popup, setPopup] = useState(false);
-    const [active, setActive] = useState(0);
     const sortRef = useRef("");
     const textSpan = useRef();
-    const activeLabel = sortArr[active].name;
+    const activeLabel = sortArr.find((item) => item.type === activeSort);
+
+    const dispatch = useDispatch();
 
     const tooglePopup = () => {
         setPopup(!popup);
@@ -21,8 +24,8 @@ const SortPopup = ({ sortArr }) => {
     }, []);
 
     const getActive = (index) => {
-        setActive(index);
         setPopup(false);
+        dispatch(sortBy(sortArr[index].type));
     };
     return (
         <div className="sort" ref={sortRef}>
@@ -42,7 +45,7 @@ const SortPopup = ({ sortArr }) => {
                 </svg>
                 <b>Сортировка по:</b>
                 <span ref={textSpan} onClick={tooglePopup}>
-                    {activeLabel}
+                    {activeLabel.name}
                 </span>
             </div>
             {popup && (
@@ -55,7 +58,9 @@ const SortPopup = ({ sortArr }) => {
                                         key={index}
                                         onClick={() => getActive(index)}
                                         className={
-                                            active === index ? "active" : ""
+                                            activeSort === item.type
+                                                ? "active"
+                                                : ""
                                         }
                                     >
                                         {item.name}
