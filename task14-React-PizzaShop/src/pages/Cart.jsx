@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { deletePizzas } from "../redux/actions/cart";
+import { deletePizzas, removePizza, plusPizza, minusPizza } from "../redux/actions/cart";
 import { Link } from "react-router-dom";
 import { CartComponent } from "../components";
 
@@ -20,7 +20,15 @@ const Cart = () => {
             dispatch(deletePizzas);
         }
     };
-    console.log(cartItems);
+    const onRemove = (id) => {
+        dispatch(removePizza(id))
+    }
+    const onPlus = (id) => {
+        dispatch(plusPizza(id))
+    }
+    const onMinus = (id) => {
+        dispatch(minusPizza(id))
+    }
     if (arrPiz.length == 0) {
         return (
             <div className="cart cart--empty">
@@ -132,6 +140,10 @@ const Cart = () => {
                                 imageUrl={imageUrl}
                                 price={pizzasCart}
                                 countPizza={countPizza}
+                                id={id}
+                                onRemove = {onRemove}
+                                onMinus = {onMinus}
+                                onPlus = {onPlus}
                             />
                         );
                     })}

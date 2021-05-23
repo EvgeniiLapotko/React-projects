@@ -8,7 +8,19 @@ const CartComponent = ({
     id,
     price,
     countPizza,
+    onRemove,
+    onPlus,
+    onMinus,
 }) => {
+    const handleRemove = () => {
+        onRemove(id)
+    }
+    const handlePlus = () => {
+        onPlus(id)
+    }
+    const handleMinus = () => {
+        onMinus(id)
+    }
     return (
         <div className="cart__item">
             <div className="cart__item-img">
@@ -21,7 +33,7 @@ const CartComponent = ({
                 </p>
             </div>
             <div className="cart__item-count">
-                <div className="button button--outline button--circle cart__item-count-minus">
+                <div className="button button--outline button--circle cart__item-count-minus" onClick={handleMinus}>
                     <svg
                         width="10"
                         height="10"
@@ -40,7 +52,7 @@ const CartComponent = ({
                     </svg>
                 </div>
                 <b>{countPizza}</b>
-                <div className="button button--outline button--circle cart__item-count-plus">
+                <div className="button button--outline button--circle cart__item-count-plus" onClick={handlePlus}>
                     <svg
                         width="10"
                         height="10"
@@ -63,7 +75,7 @@ const CartComponent = ({
                 <b>{price} ₽</b>
             </div>
             <div className="cart__item-remove">
-                <div className="button button--outline button--circle">
+                <div className="button button--outline button--circle" onClick={handleRemove}>
                     <svg
                         width="10"
                         height="10"

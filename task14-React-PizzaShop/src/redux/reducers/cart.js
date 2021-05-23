@@ -17,6 +17,22 @@ const cart = (state = initialState, action) => {
             totalPrice: action.payload,
         };
     }
+    if (action.type === "REMOVE_PIZZAS") {
+         
+         const newPizzas = {...state.items};
+         delete newPizzas[action.payload]
+        
+
+        const arrPiz = [].concat.apply([], Object.values(newPizzas));
+        
+        const arrTotalPrice = arrPiz.reduce((acc, obj) => acc + obj.price, 0);
+        return {
+            ...state,
+            items: newPizzas,
+            totalPrice: arrTotalPrice,
+            totalCount: arrPiz.length,
+        };
+    }
     if (action.type === "DELETE_PIZZAS") {
         return {
             ...state,
@@ -24,6 +40,46 @@ const cart = (state = initialState, action) => {
             totalPrice: 0,
             totalCount: 0,
         };
+    }
+    if (action.type === "PLUS_PIZZAS") {
+        // const newItems = state.items[action.payload];
+        //     newItems.push(state.items[action.payload][0])
+
+        //     const newArr = {
+        //         ...state.items,
+        //         [action.payload.id] : newItems,
+        //     }
+    
+        //     const arrPiz = [].concat.apply([], Object.values(newArr));
+        //     const arrTotalPrice = arrPiz.reduce((acc, obj) => acc + obj.price, 0);
+        //     return {
+        //         ...state,
+        //         items: newArr,
+        //         totalCount: arrPiz.length,
+        //         totalPrice: arrTotalPrice,
+        //     }
+        
+    }
+    if (action.type === "MINUS_PIZZAS") {
+        const newItems = {...state.items[action.payload]};
+        if(newItems.length > 1){
+            newItems.pop()
+        }
+        console.log(newItems);
+
+        const newArr = {
+            ...state.items,
+            [action.payload.id] : newItems,
+        }
+
+        // const arrPiz = [].concat.apply([], Object.values(newArr));
+        // const arrTotalPrice = arrPiz.reduce((acc, obj) => acc + obj.price, 0);
+        return {
+            ...state,
+            items: newArr,
+            totalCount: arrPiz.length,
+            totalPrice: arrTotalPrice,
+        }
     }
     if (action.type === "ADD_PIZZA_CART") {
         const newItems = {
