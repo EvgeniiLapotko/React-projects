@@ -42,41 +42,39 @@ const cart = (state = initialState, action) => {
         };
     }
     if (action.type === "PLUS_PIZZAS") {
-        // const newItems = state.items[action.payload];
-        //     newItems.push(state.items[action.payload][0])
+        console.log('plus');
+        const newItems = {
+                ...state.items,
+                [action.payload] : [
+                    ...state.items[action.payload], state.items[action.payload][0]
+                ]
+            }
 
-        //     const newArr = {
-        //         ...state.items,
-        //         [action.payload.id] : newItems,
-        //     }
-    
-        //     const arrPiz = [].concat.apply([], Object.values(newArr));
-        //     const arrTotalPrice = arrPiz.reduce((acc, obj) => acc + obj.price, 0);
-        //     return {
-        //         ...state,
-        //         items: newArr,
-        //         totalCount: arrPiz.length,
-        //         totalPrice: arrTotalPrice,
-        //     }
-        
-    }
-    if (action.type === "MINUS_PIZZAS") {
-        const newItems = {...state.items[action.payload]};
-        if(newItems.length > 1){
-            newItems.pop()
-        }
-        console.log(newItems);
-
-        const newArr = {
-            ...state.items,
-            [action.payload.id] : newItems,
-        }
-
-        // const arrPiz = [].concat.apply([], Object.values(newArr));
-        // const arrTotalPrice = arrPiz.reduce((acc, obj) => acc + obj.price, 0);
+        const arrPiz = [].concat.apply([], Object.values(newItems));
+        const arrTotalPrice = arrPiz.reduce((acc, obj) => acc + obj.price, 0);
         return {
             ...state,
-            items: newArr,
+            items: newItems,
+            totalCount: arrPiz.length,
+            totalPrice: arrTotalPrice,
+        }
+    }
+    if (action.type === "MINUS_PIZZAS") {
+        console.log('minus');
+        const oldItems = state.items[action.payload]
+        const newPizza = oldItems.length > 1 ? state.items[action.payload].slice(1) : oldItems;
+        
+        const newItems = {
+                ...state.items,
+                [action.payload] : newPizza
+            }
+
+        const arrPiz = [].concat.apply([], Object.values(newItems));
+        const arrTotalPrice = arrPiz.reduce((acc, obj) => acc + obj.price, 0);
+
+        return {
+            ...state,
+            items: newItems,
             totalCount: arrPiz.length,
             totalPrice: arrTotalPrice,
         }
