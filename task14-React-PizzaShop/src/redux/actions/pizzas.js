@@ -4,7 +4,6 @@ export const setLoaded = (val) => ({
 });
 
 export const fetchPizzas = (category, sortBy) => async (dispatch) => {
-    console.log(sortBy, category);
     dispatch(setLoaded(false));
     const resolve = await fetch(
         `http://localhost:4000/pizzas?${

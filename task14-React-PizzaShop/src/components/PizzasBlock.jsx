@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import classNames from "classnames";
+import Button from "./Button";
 
 const PizzasBlock = ({
     id,
@@ -10,8 +11,10 @@ const PizzasBlock = ({
     price,
     category,
     rating,
+    onAddPizza,
+    addedPizzas,
 }) => {
-    const [activeSize, setActiveSize] = useState(sizes[0]);
+    const [activeSize, setActiveSize] = useState(0);
     const [activeType, setActictType] = useState(types[0]);
     const onSelectSize = (index) => {
         setActiveSize(index);
@@ -62,7 +65,19 @@ const PizzasBlock = ({
             </div>
             <div className="pizza-block__bottom">
                 <div className="pizza-block__price">от {price}р.</div>
-                <div className="button button--outline button--add">
+                <div
+                    className="button button--outline button--add"
+                    onClick={() =>
+                        onAddPizza({
+                            id,
+                            imageUrl,
+                            name,
+                            type: typesPizza[activeType],
+                            size: sizePizza[activeSize],
+                            price,
+                        })
+                    }
+                >
                     <svg
                         width="12"
                         height="12"
@@ -76,7 +91,7 @@ const PizzasBlock = ({
                         />
                     </svg>
                     <span>Добавить</span>
-                    <i>2</i>
+                    <i>{addedPizzas ? addedPizzas : "0"}</i>
                 </div>
             </div>
         </div>

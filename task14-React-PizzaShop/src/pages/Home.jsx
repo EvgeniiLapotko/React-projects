@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { setCategory } from "../redux/actions/filters";
 import { fetchPizzas } from "../redux/actions/pizzas";
+import { addPizzaToCart } from "../redux/actions/cart";
 // import data from "../db"; база в src
 
 const categoryPizzas = ["мясные", "вегатерианские", "Гриль", "Острые"];
@@ -16,6 +17,7 @@ const sort = [
 const Home = () => {
     const dispatch = useDispatch();
     const item = useSelector(({ pizzas }) => pizzas.items);
+    const { items: cartItems } = useSelector(({ cart }) => cart);
     const isLoaded = useSelector(({ pizzas }) => pizzas.isLoaded);
     const { category, sortBy } = useSelector(({ filters }) => filters);
 
@@ -31,6 +33,10 @@ const Home = () => {
         // }, 3000);
     }, [category, sortBy]);
 
+    const onAddPizza = (obj) => {
+        dispatch(addPizzaToCart(obj));
+    };
+
     return (
         <div className="container">
             <div className="content__top">
@@ -45,7 +51,17 @@ const Home = () => {
             <div className="content__items">
                 {isLoaded ? (
                     item.map((item, index) => {
-                        return <PizzasBlock key={item.id} {...item} />;
+                        return (
+                            <PizzasBlock
+                                key={item.id}
+                                {...item}
+                                onAddPizza={onAddPizza}
+                                addedPizzas={
+                                    cartItems[item.id] &&
+                                    cartItems[item.id].length
+                                }
+                            />
+                        );
                     })
                 ) : (
                     <div className="wrap-lds">
